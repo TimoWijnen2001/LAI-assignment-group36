@@ -1,7 +1,6 @@
 import pandas as pd
-import numpy as np
 from datasets import Dataset
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer, set_seed
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, set_seed
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 import torch
 from torch import nn
@@ -55,6 +54,9 @@ def compute_metrics(pred):
 
 # --- Main Training Loop ---
 for task in tasks:
+    preds_by_input = {}
+    metrics_by_input = {}
+
     task_name = task['name']
     target_col = task['target']
     
@@ -105,9 +107,9 @@ for task in tasks:
         test_ds = Dataset.from_pandas(df_test[[input_col, 'label']].rename(columns={input_col: 'text'}), preserve_index=False)
 
         # Tokenization
-        tokenized_train = train_ds.map(lambda x: tokenize_func(x, 'text'), batched=True)
-        tokenized_val = val_ds.map(lambda x: tokenize_func(x, 'text'), batched=True)
-        tokenized_test = test_ds.map(lambda x: tokenize_func(x, 'text'), batched=True)
+        tokenized_train = train_ds.map(lambda x: tokenize_func(x, 'text'), batched=True, load_from_cache_file=False)
+        tokenized_val = val_ds.map(lambda x: tokenize_func(x, 'text'), batched=True, load_from_cache_file=False)
+        tokenized_test = test_ds.map(lambda x: tokenize_func(x, 'text'), batched=True, load_from_cache_file=False)
 
         # Model
         model = AutoModelForSequenceClassification.from_pretrained("xlm-roberta-base", num_labels=num_labels)
@@ -116,6 +118,7 @@ for task in tasks:
 
         training_args = TrainingArguments(
             output_dir=output_dir,
+            overwrite_output_dir=True,
             learning_rate=2e-5,
             per_device_train_batch_size=8,
             num_train_epochs=3,
@@ -145,6 +148,16 @@ for task in tasks:
         # Eval
         test_results = trainer.predict(tokenized_test)
         metrics = compute_metrics(test_results)
+        preds = test_results.predictions.argmax(-1)
         
+
+        preds_by_input[input_col] = preds
+        metrics_by_input[input_col] = metrics
+
+        if "post" in preds_by_input and "post_masked" in preds_by_input:
+            same = (preds_by_input["post"] == preds_by_input["post_masked"]).mean()
+            print(f"\nPrediction equality (post vs post_masked): {same:.4f}")
+
+
         print(f"Result for {task_name} ({input_col}): Accuracy={metrics['accuracy']:.4f}, Precision={metrics['precision']:.4f}, Recall={metrics['recall']:.4f}, F1={metrics['f1']:.4f}")
     
