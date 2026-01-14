@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 
-BASE_DIR = "output"
+BASE_DIR = "cleaned_data"
 SPLITS = ["train", "test"] 
 MODES = [
     "birth",
@@ -20,7 +20,7 @@ MODES = [
 ]
 
 TEXT_COLUMNS = ["post", "post_masked"]
-RANDOM_STATE = 42
+RANDOM_STATE = 1234
 
 def load_split(mode, split):
     path = os.path.join(BASE_DIR, split, f"{mode}_{split}.csv")
@@ -46,8 +46,10 @@ for mode in MODES:
 
     label_col = [c for c in train_df.columns if c not in TEXT_COLUMNS][0]
 
+
     y_train = train_df[label_col]
     y_test = test_df[label_col]
+
 
     for text_col in TEXT_COLUMNS:
         X_train = train_df[text_col].fillna("").astype(str)
