@@ -3,7 +3,6 @@ from datasets import Dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, set_seed
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 import torch
-from torch import nn
 from WeightedLossTrainer import WeightedLossTrainer
 
 # 'name': prefix of the filename (e.g., 'birth' -> 'birth_train.csv')
@@ -148,15 +147,6 @@ for task in tasks:
         # Eval
         test_results = trainer.predict(tokenized_test)
         metrics = compute_metrics(test_results)
-        preds = test_results.predictions.argmax(-1)
-        
-
-        preds_by_input[input_col] = preds
-        metrics_by_input[input_col] = metrics
-
-        if "post" in preds_by_input and "post_masked" in preds_by_input:
-            same = (preds_by_input["post"] == preds_by_input["post_masked"]).mean()
-            print(f"\nPrediction equality (post vs post_masked): {same:.4f}")
 
 
         print(f"Result for {task_name} ({input_col}): Accuracy={metrics['accuracy']:.4f}, Precision={metrics['precision']:.4f}, Recall={metrics['recall']:.4f}, F1={metrics['f1']:.4f}")
