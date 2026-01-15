@@ -77,6 +77,6 @@ for mode in MODES:
             f"Result for {mode} ({text_col}): "
             f"Accuracy={acc:.4f}, "
             f"Precision={prec:.4f}, "
-            f"Recall={rec:.4f}"
-            f"F1={f1:.4f}, "
+            f"Recall={rec:.4f}, "
+            f"F1={f1:.4f}"
         )
