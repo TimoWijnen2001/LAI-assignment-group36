@@ -7,7 +7,7 @@ It includes preprocessing, model training of both models, and the output of eval
 
 ## Environment Setup
 
-- Python version: 3.10.11  
+- Python version: 3.12.10  
 - All dependencies are listed in `requirements.txt`.
 - Install CUDA for faster model training.
 
