@@ -19,13 +19,13 @@ To use the code, the directory should look like this:
 
 ├── data<br>
 │  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── birth_year.csv <br>
-│   ├── extrovert_introvert.csv <br>
-│   ├── feeling_thinking.csv <br>
-│   ├── gender.csv <br>
-│   ├── judging_perceiving.csv <br>
-│   ├── nationality.csv <br>
-│   ├── political_leaning.csv <br>
-│   ├── sensing_intuitive.csv <br>
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── extrovert_introvert.csv <br>
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── feeling_thinking.csv <br>
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── gender.csv <br>
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── judging_perceiving.csv <br>
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── nationality.csv <br>
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── political_leaning.csv <br>
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── sensing_intuitive.csv <br>
 ├── .gitignore <br>
 ├── bert.py <br>
 ├── data_exploration.py <br>
