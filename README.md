@@ -17,7 +17,7 @@ It includes preprocessing, model training of both models, and the output of eval
 
 To use the code, the directory should look like this:
 
-├── data  
+├── data<br>
 │   ├── birth_year.csv
 │   ├── extrovert_introvert.csv
 │   ├── feeling_thinking.csv
