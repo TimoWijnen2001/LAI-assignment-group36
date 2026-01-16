@@ -19,21 +19,21 @@ To use the code, the directory should look like this:
 
 ├── data<br>
 │   ├── birth_year.csv <br>
-│   ├── extrovert_introvert.csv
-│   ├── feeling_thinking.csv
-│   ├── gender.csv
-│   ├── judging_perceiving.csv
-│   ├── nationality.csv
-│   ├── political_leaning.csv
-│   ├── sensing_intuitive.csv
-├── .gitignore
-├── bert.py
-├── data_exploration.py
-├── preprocessing.py
-├── README.md
-├── requirements.txt
-├── tfidf.py
-└── WeightedLossTrainer.py  
+│   ├── extrovert_introvert.csv <br>
+│   ├── feeling_thinking.csv <br>
+│   ├── gender.csv <br>
+│   ├── judging_perceiving.csv <br>
+│   ├── nationality.csv <br>
+│   ├── political_leaning.csv <br>
+│   ├── sensing_intuitive.csv <br>
+├── .gitignore <br>
+├── bert.py <br>
+├── data_exploration.py <br>
+├── preprocessing.py <br>
+├── README.md <br>
+├── requirements.txt <br>
+├── tfidf.py <br>
+└── WeightedLossTrainer.py <br>
 
 The `data` folder will not be on this github page, as it is too large. It can either be downloaded via the link of the lecturer, or from this google drive folder: https://drive.google.com/file/d/142hV1UqWLTu3GfNeGo7xhj9CschjSh_G/view?usp=sharing
 
